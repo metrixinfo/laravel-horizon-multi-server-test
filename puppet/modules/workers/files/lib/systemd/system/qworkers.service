@@ -1,0 +1,28 @@
+# Stop dance for laravel queue worker
+# =======================
+#
+# ExecStop sends SIGSTOP (graceful stop) to the qworkers process.
+# If, after 5s (--retry QUIT/5) qworkers is still running, systemd takes control
+# and sends SIGTERM (fast shutdown) to the main process.
+# After another 5s (TimeoutStopSec=5), and if qworkers is alive, systemd sends
+# SIGKILL to all the remaining processes in the process group (KillMode=mixed).
+#
+#
+[Unit]
+Description=Laravel Artisan Queue Workers
+Documentation=https://laravel.com/docs/5.8/horizon#running-horizon
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/test.local
+ExecStart=/usr/bin/php artisan horizon
+ExecReload=/usr/bin/php artisan horizon:terminate; php artisan horizon
+TimeoutStopSec=30
+KillMode=mixed
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

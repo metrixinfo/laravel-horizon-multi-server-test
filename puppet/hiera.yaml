@@ -1,0 +1,12 @@
+---
+:backends:
+  - yaml
+:yaml:
+  :datadir: '/tmp/vagrant-puppet/hieradata'
+:hierarchy:
+  - "nodes/%{::fqdn}"
+  - "roles/%{::role}"
+  - "common"
+:merge_behavior: deeper
+:logging:
+  - console

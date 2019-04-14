@@ -1,0 +1,3 @@
+# PHP 7.2
+php::globals::php_version: '7.2'
+php::manage_repos: true
