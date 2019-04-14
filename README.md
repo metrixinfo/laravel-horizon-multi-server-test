@@ -1,4 +1,4 @@
-# laravel-horizon-multi-server-test
+# Laravel Horizon Queue Multi-Server Test Suite
 
 A Vagrant playground with 5 VMs for horizon + 1 VM for MySQL and Redis
 
